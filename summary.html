@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary of Expenses</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+        }
+        .box {
+            background-color: #f8f8f8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .earnings {
+            background-color: #27ae60;
+            color: white;
+        }
+        .expenditure {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .remaining {
+            background-color: #f39c12;
+            color: white;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Summary of Expenses</h1>
+
+        <!-- Earnings Box -->
+        <div class="box earnings">
+            <h2>Earnings</h2>
+            <p>${{ total_earnings }}</p>
+        </div>
+
+        <!-- Expenditure Box -->
+        <div class="box expenditure">
+            <h2>Expenditure</h2>
+            <p>${{ total_expenditure }}</p>
+        </div>
+
+        <!-- Remaining Box -->
+        <div class="box remaining">
+            <h2>Remaining Balance</h2>
+            <p>${{ remaining_balance }}</p>
+        </div>
+
+        <!-- Expense Category Summary Table -->
+        <h3>Expense Summary by Category</h3>
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>Total</th>
+            </tr>
+            {% for category, total in category_summary.items() %}
+            <tr>
+                <td>{{ category }}</td>
+                <td>${{ total }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

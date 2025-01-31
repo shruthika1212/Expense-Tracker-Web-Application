@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2ecc71; /* Green */
+            font-size: 2.5rem;
+        }
+        .box-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .box {
+            background-color: #2ecc71; /* Green */
+            color: white;
+            padding: 20px;
+            width: 30%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .box h2 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        .box p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 80%;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #27ae60; /* Darker green */
+            color: white;
+            border: none;
+        }
+        button:hover {
+            background-color: #2ecc71; /* Lighter green */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #2ecc71; /* Green */
+            color: white;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+        /* Footer style */
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Expense Tracker</h1>
+
+        <!-- Add Expense Form -->
+        <form action="/add" method="post">
+            <h3>Add Expense</h3>
+            <input type="text" name="description" placeholder="Description" required><br>
+            <input type="number" name="amount" placeholder="Amount" required><br>
+            <input type="text" name="category" placeholder="Category" required><br>
+            <button type="submit">Add Expense</button>
+        </form>
+
+        <!-- Add Earnings Form -->
+        <form action="/add_earnings" method="post">
+            <h3>Add Earnings</h3>
+            <input type="number" name="earnings" placeholder="Earnings (in ₹)" required><br>
+            <button type="submit">Add Earnings</button>
+        </form>
+
+        <!-- Expense List -->
+        <h3>Expense List</h3>
+        <table>
+            <tr>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Date</th>
+            </tr>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ expense.description }}</td>
+                <td>₹{{ expense.amount }}</td>
+                <td>{{ expense.category }}</td>
+                <td>{{ expense.date }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <!-- Earnings, Expenditure, and Remaining Balance boxes -->
+        <div class="box-container">
+            <div class="box">
+                <h2>Earnings</h2>
+                <p>₹{{ total_earnings }}</p>
+            </div>
+            <div class="box">
+                <h2>Expenditure</h2>
+                <p>₹{{ total_expenditure }}</p>
+            </div>
+            <div class="box">
+                <h2>Remaining Balance</h2>
+                <p>₹{{ remaining_balance }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Made with ❤️ by Shruthika</p>
+    </div>
+</body>
+</html>
